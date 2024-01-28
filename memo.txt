@@ -1,0 +1,159 @@
+#추가 사용 기술
+AWS ssesion manager - 주피터 노트북 대체
+github actions - 신규 CI/CD
+github desktop - 신규 github GUI 툴
+Github Container Registry - 신규 docker 관리 서비스
+
+#github
+-레포생성(*오너 소문자 규칙)
+-로컬에 깃 클론
+
+#docker-compose
+ver:3
+dir:home/ubuntu/
+s1:자바 - 스프링
+r1:엔진엑스 - 리액트
+* docker-compose 파일 하나만 있어도 up 가능(안되면 로그 확인)
+
+#docker
+s1:build/libs
+r1:frontend
+* 가끔 깃이그노어에 등록된 폴더때문에 안되는 경우 있음
+
+>> 도커파일 위치 및 대략적인 골자 파악
+
+#private 레포
+-레포 내부 임시 리액트 설치
+-도커로 리액트 빌드 후 로컬에서 작동 체크
+
+#github 토큰 발급
+-블로그 참조
+
+#AWS SSM/EC2
+-IAM에서 SSM 역할 생성
+-EC2에서 Linux 2 이미지로 인스턴스 생성(지원기간 ~2025.6)
+* IAM 및 보안그룹 확인, 인스턴스 생성 후 수정하면 ssm 연결 오래 걸림
+* 세션 시작 후 bash로 시작
+
+-docs보고 ec2에 도커 설치(설치시 늘 백그라운드 실행 유지로)
+* 도커 설치 후 데몬 실행 불가시 인스턴스 재부팅
+
+-sudo su로 루트 부여
+
+-EC2에 러너 시작 : github 레포 세팅 > 액션 > 러너로 새 러너 생성
+* 마지막 config문에서 안되면 환경변수로 sudo 설정(닷넷을 깔아도됨)
+command : export RUNNER_ALLOW_RUNASROOT="1" < 환경변수로 등록
+
+* 라벨만 워크플로우 yml과 동일하게 설정
+** ./run.sh를 통해 github 접속 및 nohup으로 백그라운드 실행(출력 파일 메세지 뜸)
+** 세션 종료로 러너 오프라인시 끌때 토큰 쓰면됨
+
+
+#액션에 워크플로우 main.yml 작성
+- 도커 이미지 두 개 이상 작성시 with:file 구문으로 지정해주면 됨
+
+* 블로그대로 하되 permission만 추가 부여
+
+
+#도커 컴포즈 파일 확인
+- 기존 파일은 도커파일 대신 이미지만 사용해서 front/back 빌드 + back에서 rds 연결
+
+## 도커 빌드 테스트
+- 1. 액션으로 도커 파일 단일로 배포까지 자동화 2. 액션으로 도커 파일 2개 빌드까지 테스트 3. 액션으로 도커파일 2개 배포까지 테스트
+
+# rds 연결
+- ec2 생성 후 rds는 설정이 비교적 간편 > 파라미터 그룹, 엔드포인트 확인, EC2에 mysql 설치 만 완료
+- 파라미터 그룹은 character_set, collation, max_connections(선택)
+
+#이후 커밋 내역
+1. 도커 빌드 1 2 > 도커 배포 1 성공
+
+2. 도커 빌드 1 2 > 도커 배포 2 + rds 연결 성공
+* 도커 개별 빌드시 rds 연결은 문제 x
+* @responseBody 까먹으면 string 반환 x
+
+- rds 패스워드 "" 추가
+
+- jar 재 패키징
+
+- jpa 구문 추가
+
+- test vo 생성자 삭제
+
+- 홈 404떠서 hello test
+
+- 커밋 13 이후 테스트
+
+- 성공시 jpa 의존성, git ignore 까지 확인
+
+3. 도커 빌드 1 2 > 도커 배포 1 2 따로 + rds 연결 성공
+
+- ec2 재부팅시 러너 꺼짐
+export RUNNER_ALLOW_RUNASROOT="1"를 통해 sudo 부여 후 제거 > 생성
+
+4. 배포 후 프백 통신 테스트 성공
+- 프록시로 8080 열어주기
+- 테스트 중 예상 이슈
+1 프록시 에러(서버가 더 늦게 켜져서) 2 프록시 ip(localhost로 변경) 3 axios 에러(경고 뜸)
+> localhost 변경시 예상대로 프록시 에러(로그에서 확인)
+
+- 터미널 경로때문에 jar빌드 한 번 실패
+
+5. 원래 프로젝트 배포 1 : nginx 배포 test
+- 도커 빌드시 nginx 404로 도커파일 경로를 절대로 변경
+
+- test4 : front를 ./front로 변경
+
+- test6 : dockerfile-r을 빌드 자동으로 수정.
+
+- test7 : 절대경로로 수정 및 부트자르 - 이후 경로를 찾게 된건데 이게 왜 된건지 이해가 잘 안됨(아마 캐시 문제 같긴함)
+
+- test9 : 일단 conf.d의 default 삭제 구문 비활성화 후 배포는 성공
+
+- test10 : 설정 파일 이름을 conf.d > default.conf 로 해서 해결
+
+5. 원래 프로젝트 배포 2 : 기존 파일로 수정 성공(프론트)
+- npm audit 일단 무시 후 진행
+
+- front 부분 : 1 import한 라이브러리 npm 설치
+
+- test1 : 기존 css, loding, app 파일 복사
+
+- test2 : 라이브러리 중 폰트소스 로보토 삭제 후 푸시
+
+- test3 : 애셋 파일 복사 까먹어서 빌드가 안됨, 메모리 문제로도 빌드 안됨
+
+- test4 : npm build --verbose로 액션 내에서 자세한 로그 확인 후 파일 대소문자 오류 해결
+(메모리 문제로 예상했지만 단순 파일명 문제였음)
+
+6. 원래 프로젝트 배포 3 : 기존 파일로 수정(서버) 성공
+* 구조를 생각해보니 jar파일에 front가 들어가서 용량 낭비
+
+- 일단 기존 로컬용 h2 사용하는 yml 생생 후 설정, 파일 복사
+- 스프링부트 3으로 업그레이드는 나중에
+
+- test1 : 로컬 테스트를 위해 json proxy 수정 및 gpt 엔진 교체(davinci 003 > gpt-3.5-turbo-instruct)
+
+- test3 : 로그 확인 후 yml 설정에 api 키 추가
+
+- test4 : 뷰와 서버는 배포 성공, ddl auto on
+
+- test5 : jar 이그노어 추가 및 ddl none
+
+- test6 : properties의 include deprecated로 group으로 수정(커뮤니티 버전이라 VM옵션 추가)
+
+7. 프로젝트 전환 후 수정
+
+- test1 : 가독성을 위한 도메인 이름 및 연관성 수정, 테스트 코드 통합 테스트(프로젝트 구조상 jar 빌드 전 수행되도록 임시로)
+(build.gradle에서 bootJar가 test 의존하도록)
+
+- test2 : client 부분 수정, test 코드 및 properties 추가
+
+- test3 : compose로 수정(docker > compose시 container 초기화 필요)
+
+<배포 전
+----------------
+>배포 후
+
+1. 테스트코드 수정 중 로직 새로 짜야하는 목록
+- gptReposit의 getAnswer()

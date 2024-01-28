@@ -1,0 +1,85 @@
+name: CI/CD Docker
+
+# 트리거를 수행할 브랜치를 지정합니다.
+on:
+  push:
+    branches: [ main ]
+
+# 환경설정
+env:
+  DOCKER_IMAGE1: ghcr.io/${{ github.actor }}/private-auto-deploy-1
+  DOCKER_IMAGE2: ghcr.io/${{ github.actor }}/private-auto-deploy-2
+  VERSION: ${{ github.sha }}
+  NAME1: server
+  NAME2: client
+
+
+jobs:
+  # 빌드 Job
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # github repository에서 checkout
+      - uses: actions/checkout@v2
+      # docker build 수행
+      - name: Set up docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Cache docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ env.VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+      # GitHub 컨테이너 레지스트리에 로그인 후 빌드 & 푸시
+      - name: Login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push 1(s)
+        id: docker_build1
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./build/libs/Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ env.DOCKER_IMAGE1 }}:latest
+
+      - name: Build and push 2(r)
+        id: docker_build2
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./front/Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ env.DOCKER_IMAGE2 }}:latest
+  # 배포 Job
+  deploy:
+    needs: build  # build 후에 실행되도록 정의
+    name: Deploy
+    runs-on: [ self-hosted, label-pd1 ]
+    steps:
+      - name: Login to ghcr
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # 3000 -> 80 포트로 수행하도록 지정
+      - name: Docker run
+        run: |
+           docker-compose down --rmi all
+           docker-compose -f docker-compose.yml up -d
+#          docker stop ${{ env.NAME1 }} && docker rm ${{ env.NAME1 }} && docker rmi ${{ env.DOCKER_IMAGE1 }}:latest
+#          docker stop ${{ env.NAME2 }} && docker rm ${{ env.NAME2 }} && docker rmi ${{ env.DOCKER_IMAGE2 }}:latest
+#          docker run -d -p 8080:8080 --name server --restart always ${{ env.DOCKER_IMAGE1 }}:latest
+#          docker run -d -p 80:80 --name client --restart always ${{ env.DOCKER_IMAGE2 }}:latest

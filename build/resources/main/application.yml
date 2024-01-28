@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    group:
+      default: prod, api-key
+      local: local, api-key
+      prod: prod, api-key
+      test: test
