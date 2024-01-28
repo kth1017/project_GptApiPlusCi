@@ -5,7 +5,7 @@
 - 기존 프로젝트 : 외부 Api(Gpt/Papago)를 이용한 웹서비스 토이 프로젝트
 - 전환 후 변경점 : github actions를 활용한 CI파이프라인 및 자동 배포 구축, 모니터링시 AWS SSM을 사용한 SSH 연결 대체 등 상세 내용은 후술
 
-url 링크: bit.ly/3HtTm0e 
+url 링크: https://bit.ly/3HtTm0e 
 
 # 개요
 react+spring으로 GptApi, PapagoApi를 이용하여 만든 프로그래밍 ai질문 웹서비스
