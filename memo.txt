@@ -8,6 +8,7 @@ Github Container Registry - 신규 docker 관리 서비스
 -레포생성(*오너 소문자 규칙)
 -로컬에 깃 클론
 
+
 #docker-compose
 ver:3
 dir:home/ubuntu/
