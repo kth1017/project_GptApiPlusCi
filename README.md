@@ -31,6 +31,7 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 @branch 'main' commit 'ver 2.0.0'
 
 @to be
+- gpt 엔진을 text-davinci-003 deprecated로 인해 gpt-3.5-turbo-instruct로 변경 및 추가 설정 수정
 - github actions 작동 워크플로우 yml 파일 등록
 - 빌드 용량 확보를 위한 dockerfile 수정
 - 기존 테스트를 단위 테스트로 일부 전환(진행 중)
