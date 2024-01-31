@@ -1,9 +1,9 @@
 # project_GptApiPlusCi
-기존 프로젝트 GptApi_1에 CI 파이프라인을 추가한 프로젝트
+기존 프로젝트 GptApi_1에 CI/CD 파이프라인을 추가한 프로젝트
 (기존 프로젝트 주소 : https://github.com/kth1017/project_GptApi_1)
 
 - 기존 프로젝트 : 외부 Api(Gpt/Papago)를 이용한 웹서비스 토이 프로젝트
-- 전환 후 변경점 : github actions를 활용한 CI파이프라인 및 자동 배포 구축, 모니터링시 AWS SSM을 사용한 SSH 연결 대체 등 상세 내용은 후술
+- 전환 후 변경점 : github actions를 활용한 CI/CD 파이프라인 구축, 모니터링시 AWS SSM을 사용한 SSH 연결 대체 등 상세 내용은 후술
 
 url 링크: https://bit.ly/3HtTm0e 
 
@@ -24,7 +24,7 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 - AWS EC2&RDS : EC2를 사용하여 배포 + RDS DB 연동 / VPC 구축
 - docker : 통합 후 EC2내 docker-compose를 사용해 배포
 
-- github actions : runner를 사용해 CI 파이프라인 구축 및 자동 배포 적용
+- github actions : runner를 사용해 CI/CD 파이프라인 구축
 - AWS SSM(Systems Manager) : 기존 복잡한 리소스 사용량 관리 및 SSH 연결을 통한 인스턴스 관리를 쉽게 대체
 
 # ver 2.0.0
