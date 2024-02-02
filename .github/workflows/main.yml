@@ -29,6 +29,7 @@ jobs:
       - name: Set up docker buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
+      # 캐싱 작업 수행
       - name: Cache docker layers
         uses: actions/cache@v2
         with:
@@ -68,6 +69,7 @@ jobs:
     name: Deploy
     runs-on: [ self-hosted, label-pd1 ]
     steps:
+      # ghcr에 로그인
       - name: Login to ghcr
         uses: docker/login-action@v1
         with:
@@ -79,6 +81,7 @@ jobs:
         run: |
            docker-compose down --rmi all
            docker-compose -f docker-compose.yml up -d
+           
 #          docker stop ${{ env.NAME1 }} && docker rm ${{ env.NAME1 }} && docker rmi ${{ env.DOCKER_IMAGE1 }}:latest
 #          docker stop ${{ env.NAME2 }} && docker rm ${{ env.NAME2 }} && docker rmi ${{ env.DOCKER_IMAGE2 }}:latest
 #          docker run -d -p 8080:8080 --name server --restart always ${{ env.DOCKER_IMAGE1 }}:latest
