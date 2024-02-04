@@ -5,7 +5,7 @@
 - 기존 프로젝트 : 외부 Api(Gpt/Papago)를 이용한 웹서비스 토이 프로젝트
 - 전환 후 변경점 : github actions를 활용한 CI/CD 파이프라인 구축, 모니터링시 AWS SSM을 사용한 SSH 연결 대체 등 상세 내용은 후술
 
-url 링크: https://bit.ly/3HtTm0e & post 링크: https://fadet-coding.tistory.com/92
+url 링크: https://bit.ly/48863IO & post 링크: https://fadet-coding.tistory.com/92
 
 # 개요
 react+spring으로 GptApi, PapagoApi를 이용하여 만든 프로그래밍 ai질문 웹서비스
@@ -36,3 +36,4 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 - 빌드 용량 확보를 위한 dockerfile 수정
 - 기존 테스트를 단위 테스트로 일부 전환(진행 중)
 - 리액트 프론트엔드 부분 및 모호했던 패키지, 클래스명 수정
+- aws 정책 변경으로 EIP 유료화에 따라 IP 대신 DNS로 링크 교체 
