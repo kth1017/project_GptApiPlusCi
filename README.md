@@ -36,4 +36,5 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 - 빌드 용량 확보를 위한 dockerfile 수정
 - 기존 테스트를 단위 테스트로 일부 전환(진행 중)
 - 리액트 프론트엔드 부분 및 모호했던 패키지, 클래스명 수정
-- aws 정책 변경으로 EIP 유료화에 따라 EIP 릴리즈 및 링크 DNS로 교체
+- aws 정책 변경으로 EIP 유료화에 따라 EIP 릴리즈 및 링크 DNS로 교체(240201 추가)
+- github access token 만료로 재발급 진행(240211 추가)
