@@ -159,3 +159,7 @@ export RUNNER_ALLOW_RUNASROOT="1"를 통해 sudo 부여 후 제거 > 생성
 
 1. 테스트코드 수정 중 로직 새로 짜야하는 목록
 - gptReposit의 getAnswer()
+
+2. 240211 프록시 에러
+- eip 제거 과정에서 nginx 프록시 수정을 안함
+- 이후 ip주소에서 dns 주소로 프록시 패스 변경(실제로 더 권장되는 방법)
