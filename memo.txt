@@ -163,3 +163,5 @@ export RUNNER_ALLOW_RUNASROOT="1"를 통해 sudo 부여 후 제거 > 생성
 2. 240211 프록시 에러
 - eip 제거 과정에서 nginx 프록시 수정을 안함
 - 이후 ip주소에서 dns 주소로 프록시 패스 변경(실제로 더 권장되는 방법)
+- default.conf 대신 헷갈리게 기존에 있던 nginx.conf 삭제
+- 기존엔 package.json의 프록시 패스는 ip만 되는줄 알았으나 dns도 가능
