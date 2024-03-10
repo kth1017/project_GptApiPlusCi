@@ -51,7 +51,7 @@ public class RecomQuestionSupplier {
 
         try {
             // Test1 클래스에서 선언된 모든 필드를 가져오기
-            Field[] fields = Test1.class.getDeclaredFields();
+            Field[] fields = RecomQuestionSupplier.class.getDeclaredFields();
             for (Field field : fields) {
                 // 필드의 이름과 category가 일치하는 경우 해당 필드를 가져와서 matchingCategoryMap에 넣기
                 if (field.getName().equals(category+"SData")) {
