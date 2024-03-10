@@ -166,3 +166,5 @@ export RUNNER_ALLOW_RUNASROOT="1"를 통해 sudo 부여 후 제거 > 생성
 - default.conf 대신 헷갈리게 기존에 있던 nginx.conf 삭제
 - 기존엔 package.json의 프록시 패스는 ip만 되는줄 알았으나 dns도 가능
 - aws 정책 변경으로 ipv4 > ipv6 전환 시도했으나 개인 프리티어의 경우 ipv6 전환 불가(학습 이후 내용 수정)
+
+3. local 코딩시 nginX를 이용안하고 npm을 직접 사용하므로 서버의 yml과 package.json proxy 수정
