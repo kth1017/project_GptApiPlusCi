@@ -31,6 +31,7 @@ public class RecomQuestionSupplier {
     }
 
    // reflection을 사용하여 코드 수정, 기존 하드 코딩 매핑은 주석 처리
+    // private 필드 접근 상관 없음, 가독성은 주석으로 대체, 성능은 테스트시 큰 차이 없기에 수정
 //    public String[] getSList() {
 //        Map<String, String[]> matchingCategoryMap = new HashMap<>();
 //
