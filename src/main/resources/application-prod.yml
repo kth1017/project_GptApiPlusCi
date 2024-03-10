@@ -9,4 +9,4 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://database-1.cvu8mgw0okv3.ap-northeast-2.rds.amazonaws.com:3306/innodb
     username: admin
-    password: "!aa583939"
+    password: ""
