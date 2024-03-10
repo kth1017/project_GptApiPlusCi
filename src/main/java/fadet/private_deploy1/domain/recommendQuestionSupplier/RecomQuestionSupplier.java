@@ -30,21 +30,38 @@ public class RecomQuestionSupplier {
         this.category = category;
     }
 
-    // js의 eval()과 비슷한 동적 변수 할당 로직을 구헌하려해봤으나 결국 reflection을 사용해야해서 포기
+   // reflection을 사용하여 코드 수정, 기존 하드 코딩 매핑은 주석 처리
+//    public String[] getSList() {
+//        Map<String, String[]> matchingCategoryMap = new HashMap<>();
+//
+//        matchingCategoryMap.put("java", javaSData);
+//        matchingCategoryMap.put("spring", springSData);
+//        matchingCategoryMap.put("js", jsSData);
+//        matchingCategoryMap.put("react", reactSData);
+//        matchingCategoryMap.put("DOM", DOMSData);
+//        matchingCategoryMap.put("DBMS", DBMSSData);
+//        matchingCategoryMap.put("OOP", OOPSData);
+//
+//        return matchingCategoryMap.getOrDefault(category, dummy);
+//    }
+
     public String[] getSList() {
         Map<String, String[]> matchingCategoryMap = new HashMap<>();
 
-        matchingCategoryMap.put("java", javaSData);
-        matchingCategoryMap.put("spring", springSData);
-        matchingCategoryMap.put("js", jsSData);
-        matchingCategoryMap.put("react", reactSData);
-        matchingCategoryMap.put("DOM", DOMSData);
-        matchingCategoryMap.put("DBMS", DBMSSData);
-        matchingCategoryMap.put("OOP", OOPSData);
+        try {
+            // Test1 클래스에서 선언된 모든 필드를 가져오기
+            Field[] fields = Test1.class.getDeclaredFields();
+            for (Field field : fields) {
+                // 필드의 이름과 category가 일치하는 경우 해당 필드를 가져와서 matchingCategoryMap에 넣기
+                if (field.getName().equals(category+"SData")) {
+                    field.setAccessible(true); // private 필드에 접근 가능하도록 설정
+                    matchingCategoryMap.put(category, (String[]) field.get(this));
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         return matchingCategoryMap.getOrDefault(category, dummy);
     }
-
-
-
 }
