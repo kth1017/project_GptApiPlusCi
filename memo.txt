@@ -173,3 +173,4 @@ export RUNNER_ALLOW_RUNASROOT="1"를 통해 sudo 부여 후 제거 > 생성
 When "proxy" is specified in package.json it must start with either http:// or https://
 
 5. 리플렉션을 사용하여 기존 코드 대체(원래는 리플렉션의 단점때문에 하드코딩했으나 실제 테스트 후 큰 성능 차이 없었음)
+- 리플렉션 내용은 자바 메모 참고
