@@ -1,6 +1,6 @@
 name: CI/CD Docker
 
-# 트리거를 수행할 브랜치를 지정합니다.
+# 트리거를 수행할 브랜치 지정
 on:
   push:
     branches: [ main ]
@@ -87,7 +87,9 @@ jobs:
         run: |
            docker-compose down --rmi all
            docker-compose -f docker-compose.yml up -d
+
            
+#          도커 직접 사용 
 #          docker stop ${{ env.NAME1 }} && docker rm ${{ env.NAME1 }} && docker rmi ${{ env.DOCKER_IMAGE1 }}:latest
 #          docker stop ${{ env.NAME2 }} && docker rm ${{ env.NAME2 }} && docker rmi ${{ env.DOCKER_IMAGE2 }}:latest
 #          docker run -d -p 8080:8080 --name server --restart always ${{ env.DOCKER_IMAGE1 }}:latest
