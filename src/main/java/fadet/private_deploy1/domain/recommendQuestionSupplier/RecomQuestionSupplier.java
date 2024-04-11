@@ -11,19 +11,19 @@ import java.util.*;
 @Getter
 @NoArgsConstructor
 public class RecomQuestionSupplier {
-    private String[] lData = {"java","spring", "js", "react", "DOM" ,"DBMS", "OOP"};
+    private final String[] lData = {"java","spring", "js", "react", "DOM" ,"DBMS", "OOP"};
     private String category = "";
 
     // enum 사용과 배열 중에 고민
-    private String[] javaSData = {"jdk", "jvm", "interface", "java8", "java11", "stream", "servlet"};
-    private String[] springSData = {"spring boot", "modules", "spring mvc","DI", "IoC", "SPA", "AOP", "dependency"};
-    private String[] jsSData = {"sync", "single-thread", "EC6", "object"};
-    private String[] reactSData = {"component", "state", "props", "context API", "react-redux"};
-    private String[] DOMSData = {"virtual DOM", "rendering", "paint", "DOM tree"};
-    private String[] DBMSSData = {"query", "SQL", "No-SQL", "Transaction","Domain", "schema", "integrity", "consistency"};
-    private String[] OOPSData = {"object", "encapsulation", "inheritance", "polymorphism","mariaDB", "PostgreSQL", "oracle"};
+    private final String[] javaSData = {"jdk", "jvm", "interface", "java8", "java11", "stream", "servlet"};
+    private final String[] springSData = {"spring boot", "modules", "spring mvc","DI", "IoC", "SPA", "AOP", "dependency"};
+    private final String[] jsSData = {"sync", "single-thread", "EC6", "object"};
+    private final String[] reactSData = {"component", "state", "props", "context API", "react-redux"};
+    private final String[] DOMSData = {"virtual DOM", "rendering", "paint", "DOM tree"};
+    private final String[] DBMSSData = {"query", "SQL", "No-SQL", "Transaction","Domain", "schema", "integrity", "consistency"};
+    private final String[] OOPSData = {"object", "encapsulation", "inheritance", "polymorphism","mariaDB", "PostgreSQL", "oracle"};
 
-    private String[] dummy = {" "};
+    private final String[] dummy = {" "};
 
 
     public RecomQuestionSupplier(String category) {
