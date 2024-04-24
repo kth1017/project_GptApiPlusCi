@@ -41,3 +41,4 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 - aws 정책 변경으로 EIP 유료화에 따라 EIP 릴리즈 및 링크 DNS로 교체(240201 추가)
 - github access token 만료로 재발급 진행 및 이전 DNS 변경으로 인한 프록시 패스 수정(240211 추가)
 - aws rds에서 인증서의 CA(인증기관) 만료로 인해 mariaDB 인스턴스 업데이트(240319 추가)
+- 네이버 파파고 api 서비스의 기존 무료 정책 유료화에 따라 번역 api를 파파고 대신 deepl로 변경(240424 추가)
