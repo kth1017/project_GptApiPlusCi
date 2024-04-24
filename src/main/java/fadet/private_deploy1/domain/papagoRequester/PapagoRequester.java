@@ -12,6 +12,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 //Id 때문에 setId 추가
+// papago > deepl 이름 변경 예정
 @Getter
 public class PapagoRequester {
     private Long id;
@@ -31,9 +32,8 @@ public class PapagoRequester {
     public String incoding(ApiKey apiKey) {
 
         String clientId = apiKey.getApiId();//애플리케이션 클라이언트 아이디값";
-        String clientSecret = apiKey.getApiSecret();//애플리케이션 클라이언트 시크릿값";
 
-        String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
+        String apiURL = "https://api-free.deepl.com/v2/translate";
         String text;
         try {
             text = URLEncoder.encode(sentence, "UTF-8");
@@ -42,8 +42,7 @@ public class PapagoRequester {
         }
 
         Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+        requestHeaders.put("Authorization", clientId);
 
         String responseBody = post(apiURL, requestHeaders, text);
 
@@ -57,9 +56,9 @@ public class PapagoRequester {
         HttpURLConnection con = connect(apiUrl);
         String postParams = " ";
         if (transType==1) {
-            postParams = "source=ko&target=en&text=" + text;
+            postParams = "source_lang=ko&target_lang=en&text=" + text;
         } else if (transType==2) {
-            postParams = "source=en&target=ko&text=" + text;
+            postParams = "source_lang=en&target_lang=ko&text=" + text;
         }
 
         try {
