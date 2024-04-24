@@ -238,7 +238,8 @@ function TransForm(props) {
                             {questionContent: `${LocalTransQ}`})
                 .then(response => {
                 if (response.data.object === 'text_completion') {
-                    setResultA(JSON.stringify(response.data.choices[0].text).slice(5,-1).replace(/\\n/gi,'\n').replace(/\\"/g,'\"'));
+                  // 들어오는 json이 배열  
+                  setResultA(JSON.stringify(response.data.choices[0].text).slice(5,-1).replace(/\\n/gi,'\n').replace(/\\"/g,'\"'));
                 } else {
                     setError("서버 동기화를 위해 요청은 10초마다 보낼 수 있습니다. 이 메세지는 정상 요청 이후 답변이 출력되면 사라집니다.");
                     window.alert("서버 동기화를 위해 요청은 10초마다 보낼 수 있습니다. 혹은 다른 사용자와 요청이 겹쳤을 수 있습니다."
@@ -274,7 +275,8 @@ function ResultForm() {
                     {sentence: `${result}`})
                   .then(response => {
                     console.log(response);
-                    setTransA(JSON.stringify(response.data.message.result.translatedText).replace(/"/gi, ""));
+                    // 들어오는 json이 배열
+                    setTransA(JSON.stringify(response.data.translations[0].text).replace(/"/gi, ""));
 
                 })
                   .catch(error => console.log(error))
