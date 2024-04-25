@@ -11,10 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class ApiKey {
-    @Value("${PAPAGO_API_ID}")
+    @Value("${DEEPL_API_ID}")
     private String apiId;
-    @Value("${PAPAGO_API_SECRET}")
-    private String apiSecret;
     @Value("${GPT_API}")
     private String gptSecret;
 

@@ -1,4 +1,4 @@
-package fadet.private_deploy1.domain.papagoRequester;
+package fadet.private_deploy1.domain.deeplRequester;
 
 import fadet.private_deploy1.ApiKey;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @RequiredArgsConstructor
 @Repository
-public class PapagoRequesterRepositoryImpl implements PapagoRequesterRepository {
+public class DeeplRequesterRepositoryImpl implements DeeplRequesterRepository {
 
-    private static Map<Long, PapagoRequester> store = new ConcurrentHashMap<>();
+    private static Map<Long, DeeplRequester> store = new ConcurrentHashMap<>();
     private static long sequence = 1L;
 
     private final ApiKey apiKey;
@@ -25,21 +25,21 @@ public class PapagoRequesterRepositoryImpl implements PapagoRequesterRepository 
     }
 
     @Override
-    public PapagoRequester saveKtoE(PapagoRequester newOne){
+    public DeeplRequester saveKtoE(DeeplRequester newOne){
         newOne.setId(sequence++);
         store.put(newOne.getId(), newOne);
         return newOne;
     }
 
     @Override
-    public PapagoRequester saveEtoK(PapagoRequester newOne) {
+    public DeeplRequester saveEtoK(DeeplRequester newOne) {
         newOne.setId(sequence++);
         store.put(newOne.getId(), newOne);
         return newOne;
     }
 
     @Override
-    public PapagoRequester findLastOne() {
+    public DeeplRequester findLastOne() {
         Long size = (long)store.size();
         return store.get(size);
     }

@@ -156,7 +156,7 @@ function Form(props) {
                     {sentence: `${originQ}`})
                     .then(response => {
                     console.log(response.data);
-                    setTransQ(JSON.stringify(response.data.message.result.translatedText).replace(/"/gi, ""));
+                    setTransQ(JSON.stringify(response.data.translations[0].text).replace(/"/gi, ""));
                 })
                     .catch(error => {console.log(error);});
             }}>

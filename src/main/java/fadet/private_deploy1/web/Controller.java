@@ -2,7 +2,7 @@ package fadet.private_deploy1.web;
 
 
 import fadet.private_deploy1.service.GptService;
-import fadet.private_deploy1.service.PapagoService;
+import fadet.private_deploy1.service.DeeplService;
 import fadet.private_deploy1.service.RecomQService;
 import fadet.private_deploy1.web.dto.requestDto.TranslateEtoKRequestDto;
 import fadet.private_deploy1.web.dto.requestDto.TranslateKtoERequestDto;
@@ -24,7 +24,7 @@ import java.time.Duration;
 @RestController
 public class Controller {
 
-    private final PapagoService papagoService;
+    private final DeeplService deeplService;
     private final RecomQService recomQService;
     private final GptService gptService;
 
@@ -35,7 +35,7 @@ public class Controller {
 
     @PostMapping("/api/requestTransKE")
     public String  requestTransKtoE(@RequestBody @Valid TranslateKtoERequestDto dto){
-        return papagoService.transKtoE(dto);
+        return deeplService.transKtoE(dto);
     }
 
     @GetMapping("/api/requestRQ")
@@ -60,7 +60,7 @@ public class Controller {
 
     @PostMapping(value="/api/requestTransEK", produces="text/plain;charset=UTF-8")
     public String requestTransEK(@RequestBody @Valid TranslateEtoKRequestDto dto){
-        return papagoService.transEtoK(dto);
+        return deeplService.transEtoK(dto);
     }
 
 }

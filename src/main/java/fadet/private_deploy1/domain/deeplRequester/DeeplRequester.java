@@ -1,4 +1,4 @@
-package fadet.private_deploy1.domain.papagoRequester;
+package fadet.private_deploy1.domain.deeplRequester;
 
 import fadet.private_deploy1.ApiKey;
 import lombok.Getter;
@@ -12,15 +12,14 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 //Id 때문에 setId 추가
-// papago > deepl 이름 변경 예정
 @Getter
-public class PapagoRequester {
+public class DeeplRequester {
     private Long id;
 
     private String sentence;
     private int transType;
 
-    public PapagoRequester(String sentence, int transType) {
+    public DeeplRequester(String sentence, int transType) {
         this.sentence = sentence;
         this.transType = transType;
     }
@@ -45,6 +44,7 @@ public class PapagoRequester {
         requestHeaders.put("Authorization", clientId);
 
         String responseBody = post(apiURL, requestHeaders, text);
+        System.out.println(responseBody);
 
         return responseBody;
     }
@@ -133,6 +133,8 @@ public class PapagoRequester {
 
 
         String result = body.substring(beginIndex+17, endIndex-3);
+
+        System.out.println("result = " + result);
 
         return result;
     }

@@ -1,8 +1,10 @@
 package fadet.private_deploy1.domain.recommendQuestionSupplier;
 
+import fadet.private_deploy1.Test1;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /*
@@ -11,27 +13,27 @@ import java.util.*;
 @Getter
 @NoArgsConstructor
 public class RecomQuestionSupplier {
-    private final String[] lData = {"java","spring", "js", "react", "DOM" ,"DBMS", "OOP"};
+    private String[] lData = {"java","spring", "js", "react", "DOM" ,"DBMS", "OOP"};
     private String category = "";
 
     // enum 사용과 배열 중에 고민
-    private final String[] javaSData = {"jdk", "jvm", "interface", "java8", "java11", "stream", "servlet"};
-    private final String[] springSData = {"spring boot", "modules", "spring mvc","DI", "IoC", "SPA", "AOP", "dependency"};
-    private final String[] jsSData = {"sync", "single-thread", "EC6", "object"};
-    private final String[] reactSData = {"component", "state", "props", "context API", "react-redux"};
-    private final String[] DOMSData = {"virtual DOM", "rendering", "paint", "DOM tree"};
-    private final String[] DBMSSData = {"query", "SQL", "No-SQL", "Transaction","Domain", "schema", "integrity", "consistency"};
-    private final String[] OOPSData = {"object", "encapsulation", "inheritance", "polymorphism","mariaDB", "PostgreSQL", "oracle"};
+    private String[] javaSData = {"jdk", "jvm", "interface", "java8", "java11", "stream", "servlet"};
+    private String[] springSData = {"spring boot", "modules", "spring mvc","DI", "IoC", "SPA", "AOP", "dependency"};
+    private String[] jsSData = {"sync", "single-thread", "EC6", "object"};
+    private String[] reactSData = {"component", "state", "props", "context API", "react-redux"};
+    private String[] DOMSData = {"virtual DOM", "rendering", "paint", "DOM tree"};
+    private String[] DBMSSData = {"query", "SQL", "No-SQL", "Transaction","Domain", "schema", "integrity", "consistency"};
+    private String[] OOPSData = {"object", "encapsulation", "inheritance", "polymorphism","mariaDB", "PostgreSQL", "oracle"};
 
-    private final String[] dummy = {" "};
+    private String[] dummy = {" "};
 
 
     public RecomQuestionSupplier(String category) {
         this.category = category;
     }
 
-   // reflection을 사용하여 코드 수정, 기존 하드 코딩 매핑은 주석 처리
-    // private 필드 접근 상관 없음, 가독성은 주석으로 대체, 성능은 테스트시 큰 차이 없기에 수정
+// reflection을 사용하여 코드 수정, 기존 하드 코딩 매핑은 주석 처리
+// private 필드 접근 상관 없음, 가독성은 주석으로 대체, 성능은 테스트시 큰 차이 없기에 수정
 //    public String[] getSList() {
 //        Map<String, String[]> matchingCategoryMap = new HashMap<>();
 //
@@ -65,4 +67,7 @@ public class RecomQuestionSupplier {
 
         return matchingCategoryMap.getOrDefault(category, dummy);
     }
+
+
+
 }

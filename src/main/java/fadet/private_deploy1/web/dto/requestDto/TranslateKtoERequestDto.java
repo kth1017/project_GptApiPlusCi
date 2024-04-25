@@ -1,6 +1,6 @@
 package fadet.private_deploy1.web.dto.requestDto;
 
-import fadet.private_deploy1.domain.papagoRequester.PapagoRequester;
+import fadet.private_deploy1.domain.deeplRequester.DeeplRequester;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +19,7 @@ public class TranslateKtoERequestDto {
         this.sentence = sentence;
     }
 
-    public PapagoRequester toDomain(){
-        return new PapagoRequester(sentence, 1);
+    public DeeplRequester toDomain(){
+        return new DeeplRequester(sentence, 1);
     }
 }
