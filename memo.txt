@@ -180,7 +180,8 @@ When "proxy" is specified in package.json it must start with either http:// or h
 - 따라서 번역 api를 파파고에서 deepl로 교체
 - detail
 1 서버 domain인 PapagoRequester의 api 요청 url, apiKey(환경변수 포함) 변경
-2 (예정) PapagoRequester > DeeplRequester로 변경 예정
+2 PapagoRequester > DeeplRequester로 변경 예정(모든 클래스 일괄 변경 완료)
 3 클라이언트 번역 axios request 부분 stringfy 구문 일부 변경
+4 클라이언트 KtoE(한글 > 영어) 번역 부분 stringfy 구문 일부 변경
  
 
