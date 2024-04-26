@@ -156,7 +156,8 @@ function Form(props) {
                     {sentence: `${originQ}`})
                     .then(response => {
                     console.log(response.data);
-                    setTransQ(JSON.stringify(response.data.translations[0].text).replace(/"/gi, ""));
+                      // 들어오는 json이 배열  
+                    setTransQ(JSON.stringify(response.data.translations[0].text));
                 })
                     .catch(error => {console.log(error);});
             }}>
