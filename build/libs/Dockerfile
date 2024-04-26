@@ -1,3 +1,4 @@
+# .jar api키 등 보안 이슈로 인해 github 환경변수 설정
 FROM openjdk:11
 
 # 환경변수 지정
