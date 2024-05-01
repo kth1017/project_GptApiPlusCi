@@ -183,5 +183,7 @@ When "proxy" is specified in package.json it must start with either http:// or h
 2 PapagoRequester > DeeplRequester로 변경 예정(모든 클래스 일괄 변경 완료)
 3 클라이언트 번역 axios request 부분 stringfy 구문 일부 변경
 4 클라이언트 KtoE(한글 > 영어) 번역 부분 stringfy 구문 일부 변경
+
+7. 답변 글자수를 20,000 글자로 변경
  
 
