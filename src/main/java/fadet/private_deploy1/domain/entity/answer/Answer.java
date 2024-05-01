@@ -23,7 +23,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Long id;
-    @Column(nullable = false, length = 2000)
+    @Column(nullable = false, length = 20000)
     private String answerContent;
 
     @OneToOne(fetch = FetchType.LAZY)
