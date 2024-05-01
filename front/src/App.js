@@ -251,7 +251,7 @@ function TransForm(props) {
                 .finally(() => {console.log("post 통신 성공")
                                 setLoading(false);});
             }}>
-            <p><Input sx={{width:300}} inputProps={{maxLength:30000}} required type="text" name="transQ" placeholder='영어로 직접 입력 가능' value={transQ||''} onChange={
+            <p><Input sx={{width:300}} inputProps={{maxLength:20000}} required type="text" name="transQ" placeholder='영어로 직접 입력 가능' value={transQ||''} onChange={
                     event => {setTransQ(event.target.value);}} /></p>
             <p><Button variant='outlined' type="submit">ai에게 질문</Button></p>
             <p id="a">{error}</p>
@@ -285,7 +285,7 @@ function ResultForm() {
          }
 
   }>
-    <TextField name="resultA" inputProps={{maxLength:30000}} fullWidth multiline value={resultA||''} onChange={event => {setResultA(event.target.value);}} />
+    <TextField name="resultA" inputProps={{maxLength:20000}} fullWidth multiline value={resultA||''} onChange={event => {setResultA(event.target.value);}} />
     <p><Button variant="outlined" type="submit">번역</Button></p>
   </form>
   </>
