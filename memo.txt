@@ -185,5 +185,6 @@ When "proxy" is specified in package.json it must start with either http:// or h
 4 클라이언트 KtoE(한글 > 영어) 번역 부분 stringfy 구문 일부 변경
 
 7. 답변 글자수를 20,000 글자로 변경
- 
+- max token과 글자수는 양의 상관관계는 있으나 정비례하지 않음.
+- 토크나이저를 사용하여 글자수를 제한하는 코드가 가능하기는 하나 max_token은 이미 1280므로 그냥 답변 길이만 늘리는 것으로 함
 
