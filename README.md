@@ -43,4 +43,4 @@ NginX(웹서버, 포워드 프록시) > React(앞단) > axios > Spring Boot(뒷�
 - aws rds에서 인증서의 CA(인증기관) 만료로 인해 mariaDB 인스턴스 업데이트(240319 추가)
 - 네이버 파파고 api 서비스의 기존 무료 정책 유료화에 따라 번역 api를 파파고 대신 deepl로 변경(240424 추가)
 - max_token이 1280이므로 2,000자 이상의 글자수를 가진 답변이 가끔 나오기에 답변 글자수 20,000자로 수정(240501 추가)
-- aws ssm 설정 변경 및 docker 관련 파일 제외 기존에 사용하던 java, jupiterNotebook 등 삭제(240605 추가)
+- aws ssm 설정 변경 및 docker, github actions(runner) 관련 파일 제외 기존에 사용하던 java, jupiterNotebook 등 삭제(240605 추가)
