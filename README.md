@@ -5,6 +5,7 @@
 - 기존 프로젝트 : 외부 Api(Gpt/Papago)를 이용한 웹서비스 토이 프로젝트
 - 전환 후 변경점 : github actions를 활용한 CI/CD 파이프라인 구축, 모니터링시 AWS SSM을 사용한 SSH 연결 대체 등 상세 내용은 후술
 
+현재 폐쇄(250302 프리티어 만료로 서버 off)
 post 링크: https://fadet-coding.tistory.com/92
 
 # 개요
